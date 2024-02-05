@@ -1,0 +1,1 @@
+# HW2_MayaPlugin_VS2022
