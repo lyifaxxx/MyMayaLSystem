@@ -118,7 +118,6 @@ MStatus LSystemNode::compute(const MPlug& plug, MDataBlock& data) {
     MGlobal::displayInfo(timeCount);
     ls.process(inputTime.value(), branches, geos);
     //ls.process(2, branches, geos);
-    CylinderMesh mesh = CylinderMesh(MPoint(), MPoint());
     MPointArray points;
     MIntArray faceCounts;
     MIntArray faceConnects;

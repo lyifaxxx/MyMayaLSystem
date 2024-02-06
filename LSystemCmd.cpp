@@ -5,6 +5,8 @@
 #include <list>
 #pragma warning(disable : 2059)
 
+#define DRAW_NURB_CIRCLE 0
+
 struct Grammar {
 	std::string start;
 	std::_In_place_key_extract_map<char, std::string> rules;
@@ -50,14 +52,16 @@ MString drawShape(vec3 start, vec3 end) {
 	createShapeCmd += end[1];
 	createShapeCmd += " ";
 	createShapeCmd += end[2];
-	createShapeCmd += " -k 0 -k 1 -name curve1; circle -c 0 0 0 -nr ";
+	createShapeCmd += " -k 0 -k 1 -name curve1;";
+#if DRAW_NURB_CIRCLE
+	createShapeCmd += "circle - c 0 0 0 - nr ";
 	createShapeCmd += nurbCircleX;
 	createShapeCmd += " ";
 	createShapeCmd += nurbCircleY;
 	createShapeCmd += " ";
 	createShapeCmd += nurbCircleZ;
 	createShapeCmd += " -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1 -name nurbsCircle1; select -r nurbsCircle1 curve1 ;extrude -ch true -rn false -po 1 -et 2 -ucp 1 -fpt 1 -upn 1 -rotation 0  -scale 1 -rsp 1 \"nurbsCircle1\" \"curve1\" ;";
-
+#endif
 	return createShapeCmd;
 }
 
